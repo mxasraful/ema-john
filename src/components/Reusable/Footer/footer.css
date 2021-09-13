@@ -1,0 +1,14 @@
+.footer{
+    text-align: center;
+    padding-top: 20px;
+    margin-bottom: 20px;
+    display: inline-block;
+    border-top: 1px solid #cccccc;
+    width: 100%;
+}
+.footer a{
+    color: #58c703;
+}
+.footer a:active{
+    color: #70ff02;
+}

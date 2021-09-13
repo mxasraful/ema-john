@@ -1,0 +1,49 @@
+.wpcf7-form p:nth-child(1){
+    width: 49%;
+margin-right: 2%;
+float: left;
+}
+.wpcf7-form p:nth-child(1){
+    width: 49%;
+    float: right;
+}
+.your-name input{
+    padding: 8px 5px;
+    border: none;
+    border-radius: 4px;
+    width: 100%;
+}
+.your-email input{
+    padding: 8px 5px;
+    border: none;
+    border-radius: 4px;
+    width: 100%;
+}
+.your-subject input{
+    padding: 8px 5px;
+    border: none;
+    border-radius: 4px;
+    width: 100%;
+}
+.your-message input{
+    width: 225% ;
+    background: #FFF ;
+    height: 100px ;
+    border: none ;
+    border-radius: 5px ;
+}
+.wpcf7-submit{
+    padding: 8px 20px;
+    border: none;
+    border-radius: 4px;
+    font-weight: bold;
+    font-family: lato;
+    font-size: 20px;
+}
+.wpcf7-submit:hover{
+    background: #ff9f4b;
+    color: #fff;
+}
+#CFromSubject{
+    ko
+}

@@ -1,0 +1,19 @@
+.cartOption{
+    float: left;
+    width: 16%;
+    margin-left: 10px;
+    height: 100%;
+    padding-top: 40px;
+}
+.cartOption h2{
+    text-align: center;
+}
+.cartOption p{
+    text-align: center;
+}
+.cartOption b{
+    float: right;
+}
+.cartOption p>b{
+    float: none;
+}

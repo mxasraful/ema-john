@@ -1,0 +1,97 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;600&display=swap');
+.signUpContainer{
+    width: 420px;
+    margin: 20px auto;
+    border: 1px solid olivedrab;
+    border-radius: 5px;
+    padding: 10px;
+}
+.signUpContainer h2{
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+    font-size: 40px;
+    color: #3c3c3c;
+}
+.inputForm{
+    width: 96.5%;
+    padding: 8px 5px;
+    margin-bottom: 10px;
+    border: 1px solid rgb(223, 157, 157);
+    border-radius: 3px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: lighter;
+}
+.inputForm:focus{
+    padding: 7px 4px;
+    border: 2px solid rgb(82, 82, 82);
+}
+#createAccountBtn{
+    padding: 8px 20px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #F0C14B;
+    border: 1px solid #797979;
+    color: #ffffff;
+    border-radius: 3px;
+    font-weight: bold;
+    margin-right: 35px;
+}
+#createAccountBtn:active{
+    background-color: #E7A600;
+}
+.isSignedInSection{
+    width: 350px;
+    margin: 0 auto;
+    padding: 30px;
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    border-radius: 4px;
+    border: 1px solid rgb(223, 157, 157);
+}
+.isSignedInSection h2{
+    font-family: 'Poppins', sans-serif;
+    font-size: 40px;
+    color: #3c3c3c;
+}
+.isSignedInSection input{
+    margin: 0 auto !important;
+}
+.submitBtbSection p{
+    margin-top: 7px;
+}
+.clickToSignInWithGoogle{
+    cursor: pointer !important;
+    font-size: 17px !important;
+    font-weight: bold !important;
+    font-family: 'Poppins', sans-serif !important;
+    display: flex !important;
+    margin-top: 10px !important;
+    padding: 5px !important;
+    border: 1px solid #ea4335 !important;
+    border-radius: 5px !important;
+    font-size: 25px !important;
+    width: 100% !important;
+}
+.loginOptionImg{
+    width: 50px;
+    height: 50px;
+    margin-right: 30px;
+}
+.signInTrueFalse{
+    display: inline-block;
+    cursor: pointer;
+    width: 170px;
+    margin-top: -32px;
+    float: right;
+}
+.signInTrueFalse:hover{
+    text-decoration: underline;
+}
+.forgotPBtn{
+    margin: 0 auto !important;
+}
+.forgotPBtn:hover{
+    color: #ebe9e9 !important;
+}

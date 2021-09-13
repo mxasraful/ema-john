@@ -1,0 +1,34 @@
+.home_product h2{
+    font-size: medium;
+    margin-bottom: 10px;
+    color: #008bff;
+}
+.home_product h2:active{
+    color: #006fca;
+}
+.price{
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #FF9800;
+}
+.home_product_left_images{
+    float: left;
+    width: 25%;
+}
+.home_product_right_content{
+    float: right;
+    width: 75%;
+}
+#add_to_cart{
+    padding: 0px 15px;
+    color: #fff;
+    background: #F0C14B;
+    border: 1px solid #797979;
+    border-radius: 3px;
+    margin-top: 5px;
+    cursor: pointer;
+    box-shadow: none !important;
+}
+#add_to_cart:active{
+    background: #e7a600;
+}
