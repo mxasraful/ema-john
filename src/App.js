@@ -28,8 +28,8 @@ function App() {
       <AuthProvider>
         <Router>
           <Header />
-          <Switch>
-            <div className="mainContent">
+          <div className="mainContent">
+            <Switch>
               <Route path="/shop">
                 <Search searchedData={searchedData} setSearchedData={setSearchedData} />
                 <Shop />
@@ -62,13 +62,13 @@ function App() {
                 <Search />
                 <Shop />
               </Route>
-              <Route path="*">
+              <Route exact path="*">
                 <Error />
               </Route>
-            </div>
-          </Switch>
+            </Switch>
+          </div>
+          <Footer />
         </Router>
-        <Footer />
       </AuthProvider>
     </div>
   );
