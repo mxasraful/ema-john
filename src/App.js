@@ -11,15 +11,13 @@ import ProductDetails from './components/ProductDetails/ProductDetails';
 import { AuthProvider, PrivateRoute } from './components/Login/useAuth';
 import Checkout from './components/Checkout/Checkout';
 import Inventory from './components/Inventory/Inventory';
-import Login2 from './components/Login/Login2';
 import Profile from './components/Profile/Profile';
 import ForgotPassword from './components/ForgotPassword/ForgotPassword';
 import {
   BrowserRouter as Router,
   Switch,
-  Route,
+  Route
 } from "react-router-dom";
-
 
 function App() {
 
@@ -31,44 +29,43 @@ function App() {
         <Router>
           <Header />
           <Switch>
-            <Route path="/shop">
-              <Search searchedData={searchedData} setSearchedData={setSearchedData} />
-              <Shop />
-            </Route>
-            <Route path="/cart">
-              <Review />
-            </Route>
-            <Route path="/login">
-              <Login />
-            </Route>
-            <Route path="/loginForCheckout">
-              <Login2 />
-            </Route>
-            <PrivateRoute path="/checkout">
-              <Checkout />
-            </PrivateRoute>
-            <Route path='/pt'>
-              <Checkout />
-            </Route>
-            <Route path='/inventory'>
-              <Inventory />
-            </Route>
-            <Route path='/profile'>
-              <Profile />
-            </Route>
-            <Route path='/forgotpassword'>
-              <ForgotPassword />
-            </Route>
-            <Route exact path="/">
-              <Search />
-              <Shop />
-            </Route>
-            <Route exact path="/product/:key">
-              <ProductDetails />
-            </Route>
-            <Route path="*">
-              <Error />
-            </Route>
+            <div className="mainContent">
+              <Route path="/shop">
+                <Search searchedData={searchedData} setSearchedData={setSearchedData} />
+                <Shop />
+              </Route>
+              <Route path="/cart">
+                <Review />
+              </Route>
+              <Route path="/login">
+                <Login />
+              </Route>
+              <PrivateRoute path="/checkout">
+                <Checkout />
+              </PrivateRoute>
+              <Route path='/pt'>
+                <Checkout />
+              </Route>
+              <Route path='/inventory'>
+                <Inventory />
+              </Route>
+              <PrivateRoute path='/profile'>
+                <Profile />
+              </PrivateRoute>
+              <PrivateRoute path='/forgotpassword'>
+                <ForgotPassword />
+              </PrivateRoute>
+              <Route path="/product/:key">
+                <ProductDetails />
+              </Route>
+              <Route exact path="/">
+                <Search />
+                <Shop />
+              </Route>
+              <Route path="*">
+                <Error />
+              </Route>
+            </div>
           </Switch>
         </Router>
         <Footer />

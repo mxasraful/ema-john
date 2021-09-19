@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 
 const Product = (props) => {
-    const { img, name, seller, price, stock, key, quantity, TotalPrice } = props.product;
+    const { img, name, seller, price, stock, key, quantity } = props.product;
 
     const cartPd = props.cart
 
@@ -20,8 +20,8 @@ const Product = (props) => {
             </div>
             <div className="home_product_right_content col-10">
                 <Link to={"/product/" + key}><h2 className="home_product_right_content_title">{name.slice(0, 100)}</h2></Link>
-                <div className="d-flex">
-                    <div className="price_stock_add">
+                <div className="row">
+                    <div className="price_stock_add col-7">
                         <div className="mb-3">By: {seller}</div>
                         <p className="price">$ {price}</p>
                         {
@@ -55,7 +55,7 @@ const Product = (props) => {
                         cartPd ?
                             ""
                             :
-                            <div className="star_features ms-4">
+                            <div className="star_features ms-4 col-4">
                                 <div className="star">
                                     <img alt="star" src="https://img.icons8.com/office/16/000000/filled-star.png" />
                                     <img alt="star" src="https://img.icons8.com/office/16/000000/filled-star.png" />
@@ -64,7 +64,7 @@ const Product = (props) => {
                                     <img alt="star" src={starIconLast} />
                                 </div>
                                 <div className="features">
-                                    <h4>Features</h4>
+                                    <h5>Features</h5>
 
                                 </div>
                             </div>

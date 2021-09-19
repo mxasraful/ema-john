@@ -1,86 +1,16 @@
-.checkOutForm {
-    width: 400px;
-    height: auto;
-    background-color: rgb(221, 221, 221);
+
+.checkOutForm input{
+    padding: 4px 7px;
+    width: 100%;
+    margin-bottom: 10px;
 }
 
-.checkOutForm input[type='text'] {
-    width: 94%;
-    padding: 10px;
-    font-size: 16px;
-    margin-top: 20px;
-    border: 1px solid #7e7c7c;
-    border-radius: 3px;
+.checkOutForm .checkoutFormErrorText{
+    color: red;
+    display: block;
+    margin: -12px 0 10px 0;
 }
 
-.checkOutForm input[type='text']:hover {
-    background: rgb(248, 248, 248);
-    border: 1px solid #7e7c7c;
-}
-
-.checkOutForm input[type='text']:focus {
-    border: 1px solid #616161;
-}
-
-.checkOutForm input[type='submit'] {
-    padding: 10px 20px;
-    font-size: 18px;
-    font-weight: bold;
-    cursor: pointer;
-    margin-top: 30px;
-}
-
-.checkoutFormErrorText {
-    color: rgb(253, 31, 31);
-}
-
-.checkoutPage {
-    width: 90% !important;
-    margin: 0 auto !important;
-    display: flex;
-}
-
-.checkoutPage>div {
-    margin: 20px 10px !important;
-    background-color: #DDDDDD !important;
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #afafaf;
-}
-
-.checkoutPageProducts {
-    width: 60% !important;
-}
-
-.checkoutPageLoaderImgSection {
-    width: 100px !important;
-    margin: 170px auto;
-}
-
-.checkoutPageLoaderImgSection img {
-    width: 100px !important;
-}
-
-.checkoutProduct {
-    display: flex;
-    padding: 7px;
-    background-color: #fff;
-    border-radius: 4px;
-    border: 1px solid #afafaf;
-    margin-bottom: 5px !important;
-}
-
-.checkoutProduct img {
-    width: 90px !important;
-    margin-right: 20px !important;
-}
-
-.checkoutPaymentMethod {
-    width: 32%;
-    display: none;
-}
-
-.checkoutPageProducts {
-    height: 500px;
-    overflow-y: scroll;
+.checkOutError{
+    margin: 32vh 0;
 }

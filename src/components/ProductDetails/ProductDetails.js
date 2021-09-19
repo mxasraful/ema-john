@@ -5,11 +5,13 @@ import spinner from './../../Spinner/spinner.gif';
 import './ProductDetails.css';
 
 const ProductDetails = () => {
-    const { key } = useParams();
 
     const [product, setProduct] = useState({})
     const [dataOk, setDataOk] = useState(false)
+    
+    const { key } = useParams();
 
+    // Get product info from db
     useEffect(() => {
         fetch(`http://localhost:3001/product/${key}`)
             .then(res => res.json())
@@ -33,7 +35,7 @@ const ProductDetails = () => {
                             <div className="productDetailSellerPriceAndFeatures row mt-4">
                                 <div className="productDetailSellerAndPrice col-3">
                                     <h6 className="productDetailSeller">By: <strong>{product.seller}</strong></h6>
-                                    <h6 className="productDetailPrice">Price: <strong>{product.price}</strong></h6>
+                                    <h6 className="productDetailPrice">Price: $<strong>{product.price}</strong></h6>
                                 </div>
                                 <div className="productDetailRating col-9">
                                     {

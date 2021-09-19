@@ -11,9 +11,7 @@ const ForgotPassword = () => {
 
     const divStyle = {
         width: '300px',
-        margin: '0 auto',
-        marginTop: '50px',
-        marginBottom: '50px',
+        margin: '18vh auto',
         padding: '20px',
         border: '1px solid #aaa',
         borderRadius: '7px'

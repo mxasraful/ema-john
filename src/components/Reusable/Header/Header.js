@@ -66,7 +66,7 @@ const Header = () => {
                                                     <img style={{ width: '35px', height: '35px', borderRadius: '50%', marginTop: '-7px', marginRight: '5px' }} src={auth.user.photo} alt="" />
                                                     <span className="text-light">{auth.user.name}</span>
                                                 </div>
-                                                <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
+                                                <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2" style={{marginLeft: "-30px"}}>
                                                     <li><Link class="dropdown-item" to="/profile">Profile</Link></li>
                                                     <li><Link onClick={auth.singOut} className="dropdown-item">Sign Out</Link></li>
                                                 </ul>

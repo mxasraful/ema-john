@@ -1,77 +1,89 @@
-import React from 'react';
+import React, { createContext, useState, useContext, useEffect } from 'react';
 import * as firebase from "firebase/app";
 import "firebase/auth";
-import { createContext } from "react";
-import { useState } from "react";
 import firebaseConfig from '../../firebase.config';
-import { useContext } from 'react';
-import { useEffect } from 'react';
-import { Redirect, Route } from 'react-router-dom';
+import { Route } from 'react-router-dom';
+import jwtDecode from "jwt-decode";
 
 firebase.initializeApp(firebaseConfig)
 
-const AuthContext = createContext();
 
+// Create context
+const AuthContext = createContext();
+// Create provider
 export const AuthProvider = (props) => {
     const auth = Auth();
     return <AuthContext.Provider value={auth}>{props.children}</AuthContext.Provider>
 }
+// Context
 export const useAuth = () => useContext(AuthContext);
 
+
+// Filter user info function
 const getUser = user => {
     const { displayName, email, photoURL, emailVerified } = user;
     return { name: displayName, email, photo: photoURL, verified: emailVerified }
 }
 
+
+// Privet route for validate user function
 export const PrivateRoute = ({ children, ...rest }) => {
     const auth = useAuth()
     return (
         <Route
             {...rest}
             render={({ location }) =>
-                auth.user ? (
+                (auth.user || sessionStorage.getItem("userToken")) ? (
                     children
                 ) : (
-                        <Redirect
-                            to={{
-                                pathname: "/loginForCheckout",
-                                state: { from: location }
-                            }}
-                        />
-                    )
+                    window.location.replace(`/login?for=${rest.location.pathname}`)
+                )
             }
         />
     );
 }
+
+// Main authentication function
 const Auth = () => {
     const [user, setUser] = useState(null)
+    const [storedTrue, setStoredTrue] = useState(false)
+    const forgotSuccessMessage = useState(null)
+    const forgotErrorMessage = useState(null)
 
+    // Url query for redirect page
+    const query = window.location?.search?.split('=')[1]
+
+
+    // SignIn user with google function
     const singInWithGoogle = () => {
         const provider = new firebase.auth.GoogleAuthProvider();
         return firebase.auth().signInWithPopup(provider)
             .then(res => {
-                const signedUser = getUser(res.user)
-                setUser(signedUser)
+                storeLoggedInUserData()
+                setUser(getUser(res.user))
                 return (res.user)
             })
             .catch(err => {
-                console.log(err)
                 setUser(null)
                 return (err.message)
             })
     }
+
+    // SignIn user with facebook function
     const signInWithFb = () => {
         const provider = new firebase.auth.FacebookAuthProvider();
         firebase.auth().signInWithPopup(provider)
             .then(res => {
-                const user = res.user;
-                console.log(user)
+                const user = getUser(res.user);
+                setUser(user)
+                storeLoggedInUserData()
             })
             .catch(err => {
                 console.log(err)
             })
     }
 
+    // SignUp user with password function
     const signUpWithPass = (name, email, password) => {
         firebase.auth().createUserWithEmailAndPassword(email, password)
             .then(res => {
@@ -83,6 +95,7 @@ const Auth = () => {
                         emailVerification()
                         const signedUser = getUser(res.user)
                         setUser(signedUser)
+                        storeLoggedInUserData()
                         return res.user
                     })
             })
@@ -92,10 +105,12 @@ const Auth = () => {
             });
     }
 
+    // SignIn user with password function
     const signInWithPass = (email, password) => {
         firebase.auth().signInWithEmailAndPassword(email, password)
             .then(res => {
                 const signedUser = getUser(res.user)
+                storeLoggedInUserData()
                 setUser(signedUser)
                 return user
             })
@@ -105,48 +120,78 @@ const Auth = () => {
             });
     }
 
-
+    // Verify user email function
     const emailVerification = () => {
         var user = firebase.auth().currentUser;
+        user.sendEmailVerification()
+            .then((res) => {
 
-        user.sendEmailVerification().then(function () {
+            })
+            .catch((error) => {
 
-        }).catch(function (error) {
-
-        });
+            });
     }
 
-    const forgotSuccessMessage = useState(null)
-    const forgotErrorMessage = useState(null)
-
+    // Forgot user password function
     const forgotPassword = (email) => {
-        return firebase.auth().sendPasswordResetEmail(email).
-            then((res) => {
+        return firebase.auth().sendPasswordResetEmail(email)
+            .then((res) => {
                 return res
             }).catch((err) => {
                 return err.message
             });
     }
 
+    // User sign out function
     const singOut = () => {
         firebase.auth().signOut()
             .then(res => {
+                sessionStorage.removeItem("userToken")
                 setUser(null)
             })
             .catch(err => {
                 console.log(err.message)
             })
     }
-    useEffect(() => {
-        firebase.auth().onAuthStateChanged(function (usr) {
-            if (usr) {
-                const currentUser = getUser(usr)
-                setUser(currentUser)
-            } else {
 
+    // Store logged in user data
+    const storeLoggedInUserData = () => {
+        setStoredTrue(false)
+        firebase.auth().currentUser.getIdToken(true)
+            .then(function (idToken) {
+                sessionStorage.setItem("userToken", idToken)
+                setStoredTrue(true)
+            }).catch(function (error) {
+
+            });
+    }
+
+    // Reload for get user
+    useEffect(() => {
+        if (window.location.pathname === '/login') {
+            if (sessionStorage.getItem("userToken")) {
+                if (query) {
+                    window.location.replace(query)
+                } else {
+                    window.location.replace('/')
+                }
             }
-        });
+        }
+    }, [storedTrue])
+
+    // Get logged in user
+    useEffect(() => {
+        if (sessionStorage.getItem('userToken')) {
+            const { name, email, picture, email_verified } = jwtDecode(sessionStorage.getItem('userToken'))
+            setUser({ name, photo: picture, email, verified: email_verified })
+            console.log({ name, photo: picture, email, verified: email_verified })
+        } else {
+            console.log("Null")
+        }
     }, [])
+
+    // const tokenUser = jwtDecode(sessionStorage.getItem('userToken')
+    // setUser({ name: tokenUser.name, photo: tokenUser.picture, email: tokenUser.email, verified: tokenUser.emailVerified })
 
     return {
         user,

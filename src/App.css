@@ -13,6 +13,10 @@ a {
     text-decoration: none;
 }
 
+.mainContent{
+    min-height: 70vh;
+}
+
 .button{
     background-color: #F0C14B !important;
     color: #FFFFFF !important;
